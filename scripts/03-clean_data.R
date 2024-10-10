@@ -10,7 +10,7 @@
 library(dplyr)
 
 # Load the data
-radiohead_data <- read.csv('~/Desktop/STA304/spotify_artist_analysis/data/01-raw_data/raw_data.csv')
+radiohead_data <- read.csv('data/01-raw_data/raw_data.csv')
 
 # Convert duration from ms to minutes
 radiohead_data <- radiohead_data %>%
