@@ -10,7 +10,7 @@
 library(dplyr)
 
 # Load the data
-radiohead_data <- readRDS('data/01-raw_data/raw_data.csv')
+radiohead_data <- readRDS('data/01-raw_data/raw_data.rdss')
 
 # Convert duration from ms to minutes
 radiohead_data <- radiohead_data %>%
