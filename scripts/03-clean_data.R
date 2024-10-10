@@ -10,7 +10,7 @@
 library(dplyr)
 
 # Load the data
-radiohead_data <- readRDS('data/01-raw_data/raw_data.rds')
+radiohead_data <- readRDS('data/01-raw_data/radiohead.rds')
 
 # Convert duration from ms to minutes
 radiohead_data <- radiohead_data %>%
@@ -18,7 +18,7 @@ radiohead_data <- radiohead_data %>%
 
 # Select relevant columns for analysis
 cleaned_radiohead_data <- radiohead_data %>%
-  select(artist_name, album_name, track_number, duration_min, acousticness, danceability, energy, instrumentalness, valence, tempo)
+  select(track_name, album_name, album_release_date, track_number, duration_min, acousticness, danceability, energy, instrumentalness, valence, tempo, key_mode)
 
 # Save cleaned data
 write_rds(cleaned_radiohead_data, "data/02-analysis_data/analysis_data.rds")

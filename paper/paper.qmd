@@ -1,5 +1,5 @@
 ---
-title: "Radiohead"
+title: "On Radiohead"
 subtitle: ""
 author: 
   - Richard Guo
@@ -8,7 +8,6 @@ author:
 thanks: "Code and data are available at: https://github.com/amayyam/spotify_artist_analysis"
 date: today
 date-format: long
-abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
 format: pdf
 number-sections: true
 bibliography: references.bib
@@ -20,69 +19,37 @@ bibliography: references.bib
 #| message: false
 
 library(tidyverse)
+radiohead <- readRDS(here::here("data/02-analysis_data/analysis_data.rds"))
 ```
 
 
-# Introduction
-Radiohead are an English rock band that is sometimes played on alternative radio stations in Toronto, such as 102.1 and 107.1. According to the play statistics on their spotify page, their most popular song is 'Creep'.  
+# Acknowledgements
+We used the statistical programming language R [@citeR] to conduct analysis. Our data was taken from [@spotify] using their developer API. Parts of the code were written with the assistance of  @tellingstories and @CGPT.
+
+# Data
+Radiohead are an English rock band that is sometimes played on alternative radio stations in Toronto, such as 102.1 and 107.1. According to the play statistics on their Spotify page, their five most popular songs are 'Creep', 'No Surprises', 'Karma Police', 'High and Dry', and 'Jigsaw Falling Into Place' in descending order. @fig-valence shows the perceived happiness of Radiohead songs, as rated by many MIT undergraduate students. 
 
 ```{r}
 #| echo: false
+#| warning: false
+#| fig-cap: Valence of Radiohead songs
+#| label: fig-valence
 radiohead |>
-  select(artist_name, album_release_date, valence) |>
+  select(album_release_date, valence) |>
   mutate(album_release_date = ymd(album_release_date)) |> 
-  ggplot(aes( x = album_release_date, y = valence, color = artist_name)) +
+  ggplot(aes( x = album_release_date, y = valence)) +
   geom_point(alpha = 0.3) +
   geom_smooth() +
   theme_minimal() +
-  facet_wrap(facets = vars(artist_name), dir = "v") +
   labs(
    x = "Album release date",
    y = "Valence",
-   color = "Artist"
   ) +
   scale_color_brewer(palette = "Set1") +
   theme(legend.position = "bottom")
 ```
 
 
-# Data {#sec-data}
-
-## Overview
-
-We use the statistical programming language R [@citeR].... Our data [@spotify].... Following @tellingstories, we consider...
-
-Overview text
-
-## Measurement
-	
-Some paragraphs about how we go from a phenomena in the world to an entry in the dataset.
-
-## Outcome variables
-
-Add graphs, tables and text. Use sub-sub-headings for each outcome variable or update the subheading to be singular.
-
-Talk way more about it. 
-
-## Predictor variables
-
-Add graphs, tables and text.
-
-Use sub-sub-headings for each outcome variable and feel free to combine a few into one if they go together naturally.
-
-
-
-
-
-
-
-
-# Results
-
-
-
-# Discussion
-# Appendix
 \newpage
 
 
