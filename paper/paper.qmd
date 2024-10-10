@@ -19,6 +19,7 @@ bibliography: references.bib
 #| message: false
 
 library(tidyverse)
+library(knitr)
 radiohead <- readRDS(here::here("data/02-analysis_data/analysis_data.rds"))
 ```
 
@@ -27,7 +28,7 @@ radiohead <- readRDS(here::here("data/02-analysis_data/analysis_data.rds"))
 We used the statistical programming language R [@citeR] to conduct analysis. Our data was taken from [@spotify] using their developer API. Parts of the code were written with the assistance of  @tellingstories and @CGPT.
 
 # Data
-Radiohead are an English rock band that is sometimes played on alternative radio stations in Toronto, such as 102.1 and 107.1. According to the play statistics on their Spotify page, their five most popular songs are 'Creep', 'No Surprises', 'Karma Police', 'High and Dry', and 'Jigsaw Falling Into Place' in descending order. @fig-valence shows the perceived happiness of Radiohead songs, as rated by many MIT undergraduate students. 
+Radiohead are an English rock band that is sometimes played on alternative radio stations in Toronto, such as 102.1 and 107.1. According to the play statistics on their Spotify page, their five most popular songs are 'Creep', 'No Surprises', 'Karma Police', 'High and Dry', and 'Jigsaw Falling Into Place' in descending order. @fig-valence shows the perceived happiness of Radiohead songs, as rated by many MIT undergraduate students. Creep was released in their first commercial album, and was given a valence score of 0.104, ranking in the lower half of all observations. 
 
 ```{r}
 #| echo: false
@@ -48,8 +49,25 @@ radiohead |>
   scale_color_brewer(palette = "Set1") +
   theme(legend.position = "bottom")
 ```
-
-
+@fig-energy shows that when the energy of the songs was rated by the same undergraduate MIT students, a weak correlation between the energy and valence of the songs could be found.
+```{r}
+#| echo: false
+#| warning: false
+#| fig-cap: Comparing Energy and Valence
+#| label: fig-energy
+radiohead |>
+  select(energy, valence) |>
+  ggplot(aes( x = energy, y = valence)) +
+  geom_point(alpha = 0.3) +
+  geom_smooth() +
+  theme_minimal() +
+  labs(
+   x = "energy",
+   y = "Valence",
+  ) +
+  scale_color_brewer(palette = "Set1") +
+  theme(legend.position = "bottom")
+```
 \newpage
 
 
