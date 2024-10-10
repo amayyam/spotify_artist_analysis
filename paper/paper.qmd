@@ -2,8 +2,9 @@
 title: "Radiohead"
 subtitle: ""
 author: 
-  - First author
-  - Another author
+  - Richard Guo
+  - Maryam Ansari
+  - Gauravpreet Thind
 thanks: "Code and data are available at: https://github.com/amayyam/spotify_artist_analysis"
 date: today
 date-format: long
@@ -23,20 +24,26 @@ library(tidyverse)
 
 
 # Introduction
+Radiohead are an English rock band that is sometimes played on alternative radio stations in Toronto, such as 102.1 and 107.1. According to the play statistics on their spotify page, their most popular song is 'Creep'.  
 
-Overview paragraph
-
-Estimand paragraph
-
-Results paragraph
-
-Why it matters paragraph
-
-Telegraphing paragraph: The remainder of this paper is structured as follows. @sec-data....
-
-
-
-
+```{r}
+#| echo: false
+radiohead |>
+  select(artist_name, album_release_date, valence) |>
+  mutate(album_release_date = ymd(album_release_date)) |> 
+  ggplot(aes( x = album_release_date, y = valence, color = artist_name)) +
+  geom_point(alpha = 0.3) +
+  geom_smooth() +
+  theme_minimal() +
+  facet_wrap(facets = vars(artist_name), dir = "v") +
+  labs(
+   x = "Album release date",
+   y = "Valence",
+   color = "Artist"
+  ) +
+  scale_color_brewer(palette = "Set1") +
+  theme(legend.position = "bottom")
+```
 
 
 # Data {#sec-data}
