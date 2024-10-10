@@ -21,4 +21,4 @@ cleaned_radiohead_data <- radiohead_data %>%
   select(artist_name, album_name, track_number, duration_min, acousticness, danceability, energy, instrumentalness, valence, tempo)
 
 # Save cleaned data
-write_rds(cleaned_radiohead_data, "~/Desktop/STA304/spotify_artist_analysis/data/02-analysis_data/analysis_data.rds")
+write_rds(cleaned_radiohead_data, "data/02-analysis_data/analysis_data.rds")
