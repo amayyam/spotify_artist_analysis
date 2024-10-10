@@ -21,5 +21,5 @@ saveRDS(radiohead, "radiohead.rds")
 radiohead <- readRDS("radiohead.rds")
 
 #### Save data ####
-write_rds(radiohead , "~/Desktop/STA304/spotify_artist_analysis/data/01-raw_data/raw_data.rds") 
+write_rds(radiohead , "data/01-raw_data/raw_data.rds") 
          
